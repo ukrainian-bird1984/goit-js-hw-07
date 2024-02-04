@@ -6,13 +6,19 @@ const options = [
   { label: 'рожевий', color: '#E91E63' },
   { label: 'індиго', color: '#3F51B5' },
 ];
+
 const body = document.querySelector('body');
-const btnColorBody = document.querySelector('.change-color');
-const textColorName = document.querySelector('span');
-btnColorBody.addEventListener('click', onBtnColorChange);
+const changeColorButton = document.querySelector('.change-color');
+const textColorElement = document.querySelector('.color');
+
+changeColorButton.addEventListener('click', onBtnColorChange);
+
 function onBtnColorChange() {
-  const randomColor = Math.floor(Math.random() * options.length);
-  const selectColor = options[randomColor];
-  textColorName.textContent = selectColor.label;
-  document.body.style.backgroundColor = selectColor.color;
+  const randomColor = getRandomHexColor();
+  textColorElement.textContent = randomColor;
+  body.style.backgroundColor = randomColor;
+}
+
+function getRandomHexColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }

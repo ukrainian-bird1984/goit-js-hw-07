@@ -1,14 +1,22 @@
-const formUser = document.querySelector('.login-form');
-formUser.addEventListener('submit', onFormSubmit);
+const loginForm = document.querySelector('.login-form');
+loginForm.addEventListener('submit', onFormSubmit);
+
 function onFormSubmit(e) {
   e.preventDefault();
-  const email = formUser.elements.email.value;
-  const password = formUser.elements.password.value;
+
+  const email = loginForm.elements.email.value.trim();
+  const password = loginForm.elements.password.value.trim();
+
+  if (!email || !password) {
+    alert('Будь ласка, заповніть всі поля форми.');
+    return;
+  }
+
   const userData = {
     email,
     password,
   };
 
   console.log(userData);
-  formUser.reset();
+  loginForm.reset();
 }
